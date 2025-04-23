@@ -1,0 +1,67 @@
+
+services:
+
+  postgresql:
+    image: postgres:16.0-alpine3.18
+    container_name: knight_dungeon_db
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - back_net
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/dockerfile
+    image: knight_dungeon_backend:0.1
+    container_name: knight_dungeon_backend
+    volumes:
+      - ./backend:/app
+      - static_volume:/app/staticfiles
+    env_file:
+      - .env
+    depends_on:
+      - postgresql
+    networks:
+      - back_net
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/dockerfile
+    image: nginx:latest
+    container_name: knight_dungeon_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - static_volume:/app/staticfiles
+    depends_on:
+      - backend
+    networks:
+      - back_net
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: unless-stopped
+    networks:
+      - back_net
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgresql
+
+networks:
+  back_net:
+    name: knight_dungeon_network
+    driver: bridge
+
+volumes:
+  postgres_data:
+  static_volume:
+

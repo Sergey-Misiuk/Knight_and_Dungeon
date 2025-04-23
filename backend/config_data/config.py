@@ -23,6 +23,6 @@ class DjangoConfig(BaseSettings):
     )
 
     model_config = {
-        "env_file": str(BASE_DIR / ".env"),
+        "env_file": str(Path(__file__).resolve().parents[2] / ".env"),
         "extra": "ignore"
         }

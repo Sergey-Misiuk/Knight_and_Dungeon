@@ -1,0 +1,22 @@
+FROM python:3.11-slim
+
+# Установим Poetry
+RUN pip install poetry
+
+# Рабочая директория
+WORKDIR /app
+
+# Копируем pyproject.toml и lock-файл
+COPY backend/pyproject.toml backend/poetry.lock* /app/
+
+# Установим зависимости
+RUN poetry install --no-root
+
+# Копируем остальной код
+COPY backend /app
+
+
+COPY docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["sh", "/entrypoint.sh"]
