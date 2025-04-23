@@ -2,6 +2,10 @@
 <p align="center">⚔️ Telegram Web Game — Исследуй подземелья, побеждай врагов и управляй своим героем!</p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/version-0.1.0-blue" alt="version badge"/>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/python-3.11-blue?logo=python">
   <img src="https://img.shields.io/badge/Django-5.2-success?logo=django">
   <img src="https://img.shields.io/badge/docker-compose-blue?logo=docker">
