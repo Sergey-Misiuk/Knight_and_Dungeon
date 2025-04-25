@@ -11,7 +11,7 @@ class BuffDebuff(models.Model):
         ("attack", "Атака"),
         ("defense", "Защита"),
         ("hp", "Здоровье"),
-        ("crit_chance", "Шанс крита"),
+        # ("crit_chance", "Шанс крита"),
     ]
 
     name = models.CharField(max_length=100, unique=True)

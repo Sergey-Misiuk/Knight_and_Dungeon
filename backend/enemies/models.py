@@ -25,7 +25,7 @@ class Enemy(models.Model):
 
 class EnemyStats(models.Model):
     enemy = models.ForeignKey(Enemy, on_delete=models.CASCADE, related_name="stats")
-    difficulty = models.ForeignKey('heroes.DungeonDifficulty', on_delete=models.CASCADE)
+    difficulty = models.ForeignKey('dungeon.DungeonDifficulty', on_delete=models.CASCADE)
 
     hp_multiplier = models.FloatField(default=1.0)
     attack_multiplier = models.FloatField(default=1.0)

@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import DungeonDifficulty
 
-# Register your models here.
+
+@admin.register(DungeonDifficulty)
+class DungeonDifficultyAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "exp_multiplier", "rooms_before_boss")

@@ -2,17 +2,6 @@ from django.db import models
 from users.models import User
 
 
-class DungeonDifficulty(models.Model):
-    name = models.CharField(max_length=50)
-    exp_multiplier = models.FloatField()
-    rooms_before_boss = models.IntegerField()
-    bonus_exp_chest = models.IntegerField(default=5)
-    bonus_exp_buff = models.IntegerField(default=3)
-
-    def __str__(self):
-        return self.name
-
-
 class Character(models.Model):
     ARCHETYPE_CHOICES = [
         ("brave", "Бесстрашный"),
@@ -35,7 +24,7 @@ class Character(models.Model):
     # Room
     current_room = models.IntegerField(default=1)
 
-    difficulty = models.ForeignKey("DungeonDifficulty", on_delete=models.SET_NULL, null=True)
+    difficulty = models.ForeignKey("dungeon.DungeonDifficulty", on_delete=models.SET_NULL, null=True)
 
     is_alive = models.BooleanField(default=True)
     archetype = models.CharField(max_length=20, choices=ARCHETYPE_CHOICES, default="brave")
