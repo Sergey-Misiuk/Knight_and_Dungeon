@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'battle',
     'dungeon',
     'enemies',
-    'heroes'
+    'heroes',
+    'users',
 ]
 
 MIDDLEWARE = [
