@@ -8,5 +8,10 @@ class DungeonDifficulty(models.Model):
     bonus_exp_chest = models.IntegerField(default=5)
     bonus_exp_buff = models.IntegerField(default=3)
 
+    hp_multiplier = models.FloatField(default=1.0)
+    attack_multiplier = models.FloatField(default=1.0)
+    defense_multiplier = models.FloatField(default=1.0)
+    crit_multiplier = models.FloatField(default=1.0)
+
     def __str__(self):
         return self.name

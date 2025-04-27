@@ -2,7 +2,7 @@
 <p align="center">⚔️ Telegram Web Game — Исследуй подземелья, побеждай врагов и управляй своим героем!</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.0-blue" alt="version badge"/>
+  <img src="https://img.shields.io/badge/version-0.2.0-blue" alt="version badge"/>
 </p>
 
 <p align="center">

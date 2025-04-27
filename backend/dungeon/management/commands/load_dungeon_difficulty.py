@@ -17,6 +17,10 @@ class Command(BaseCommand):
                     "rooms_before_boss": dungeon["rooms_before_boss"],
                     "bonus_exp_chest": dungeon["bonus_exp_chest"],
                     "bonus_exp_buff": dungeon["bonus_exp_buff"],
+                    "hp_multiplier": dungeon["hp_multiplier"],
+                    "attack_multiplier": dungeon["attack_multiplier"],
+                    "defense_multiplier": dungeon["defense_multiplier"],
+                    "crit_multiplier": dungeon["crit_multiplier"],
                 }
             )
             if created:
