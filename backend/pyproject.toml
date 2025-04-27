@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "backend"
+name = "knight-and-dungeon"
 version = "0.1.0"
 description = ""
 authors = ["Sergey-Misiuk <sergey.misiuk712@gmail.com>"]
