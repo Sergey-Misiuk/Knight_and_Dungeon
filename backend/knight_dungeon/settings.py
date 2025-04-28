@@ -81,6 +81,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'knight_dungeon.wsgi.application'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 

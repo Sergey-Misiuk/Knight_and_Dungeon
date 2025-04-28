@@ -12,6 +12,8 @@ class Character(models.Model):
     # User
     user = models.OneToOneField("users.User", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    # Personal Gold
+    personal_gold = models.IntegerField(default=0)
     # Level
     level = models.IntegerField(default=1)
     experience = models.IntegerField(default=0)

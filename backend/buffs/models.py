@@ -10,7 +10,7 @@ class BuffDebuff(models.Model):
     ATTRIBUTE_CHOICES = [
         ("attack", "Атака"),
         ("defense", "Защита"),
-        ("hp", "Здоровье"),
+        ("health", "Здоровье"),
         # ("crit_chance", "Шанс крита"),
     ]
 
