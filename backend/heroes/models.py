@@ -12,6 +12,8 @@ class Character(models.Model):
     # User
     user = models.OneToOneField("users.User", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    # Personal Gold
+    personal_gold = models.IntegerField(default=0)
     # Level
     level = models.IntegerField(default=1)
     experience = models.IntegerField(default=0)
@@ -22,7 +24,7 @@ class Character(models.Model):
     base_attack = models.IntegerField(default=10)
     armor = models.IntegerField(default=5)
     # Room
-    current_room = models.IntegerField(default=1)
+    count_room = models.IntegerField(default=1)
 
     difficulty = models.ForeignKey("dungeon.DungeonDifficulty", on_delete=models.SET_NULL, null=True)
 

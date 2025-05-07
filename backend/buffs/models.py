@@ -3,14 +3,14 @@ from django.db import models
 
 class BuffDebuff(models.Model):
     EFFECT_TYPE_CHOICES = [
-        ("buff", "Баф"),
-        ("debuff", "Дебафф"),
+        ("Buff", "Баф"),
+        ("Debuff", "Дебафф"),
     ]
 
     ATTRIBUTE_CHOICES = [
-        ("attack", "Атака"),
-        ("defense", "Защита"),
-        ("hp", "Здоровье"),
+        ("Attack", "Атака"),
+        ("Defense", "Защита"),
+        ("Health", "Здоровье"),
         # ("crit_chance", "Шанс крита"),
     ]
 

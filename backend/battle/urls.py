@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from battle.views import AttackEnemyAPIView
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    # path('', index, name='index'),
+    # path('room/enter/', RoomBattleEnterAPIView.as_view(), name='room_enter'),
+    path('attack/', AttackEnemyAPIView.as_view(), name='attack_enemy'),
 ]
