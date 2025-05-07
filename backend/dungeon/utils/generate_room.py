@@ -1,3 +1,6 @@
+
+from battle.utils.battle_logic import BattleManager
+from enemies.models import EnemyStats
 from dungeon.utils.room_logic import process_room_event
 from heroes.models import Character
 import random
@@ -59,10 +62,38 @@ class RoomEventGenerator:
         return "🚪 Комната неизвестного типа."
 
     def handle_battle(self):
+
+        enemy_stats = EnemyStats.objects.filter(difficulty=self.difficulty).order_by("?").first()
+
+        if not enemy_stats:
+            return {"event_text": "⚔️ Врагов не найдено!", "system_text": None}
+
+        battle = BattleManager(self.character, enemy_stats)
+
+        result_texts = []
+
+        result_texts.append(battle.character_attack())
+
+        if not battle.is_enemy_dead():
+            result_texts.append(battle.enemy_attack())
+
+        battle.save_character_state()
+
+        if battle.is_enemy_dead():
+            result_texts.append("🏆 Вы победили врага и получили награду!")
+            # Здесь можно добавить увеличение опыта персонажа!
+        elif battle.is_character_dead():
+            result_texts.append("☠️ Вы погибли в бою...")
+
         return {
-            "event_text": "⚔️ Впереди вас враг, готовьтесь к битве!",
-            "system_text": None,
+            "event_text": "⚔️ Начался бой!",
+            "system_text": "\n".join(result_texts),
         }
+
+        # return {
+        #     "event_text": "⚔️ Впереди вас враг, готовьтесь к битве!",
+        #     "system_text": None,
+        # }
 
     def handle_chest(self):
         return {

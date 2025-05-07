@@ -24,7 +24,7 @@ class Character(models.Model):
     base_attack = models.IntegerField(default=10)
     armor = models.IntegerField(default=5)
     # Room
-    current_room = models.IntegerField(default=1)
+    count_room = models.IntegerField(default=1)
 
     difficulty = models.ForeignKey("dungeon.DungeonDifficulty", on_delete=models.SET_NULL, null=True)
 
