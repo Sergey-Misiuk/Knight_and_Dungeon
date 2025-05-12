@@ -47,8 +47,7 @@ class EnterRoomAPIView(APIView):
                 enemy_crit_chance=None,
                 enemy_exp=None,
             )
-            
-            
+ 
         elif event_type == RoomEventType.BATTLE:
             if character.count_room >= character.difficulty.rooms_before_boss:
                 available_enemies = Enemy.objects.filter(is_boss=True)

@@ -12,17 +12,30 @@ class Character(models.Model):
     # User
     user = models.OneToOneField("users.User", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+
     # Personal Gold
     personal_gold = models.IntegerField(default=0)
+
     # Level
     level = models.IntegerField(default=1)
     experience = models.IntegerField(default=0)
     skill_points = models.IntegerField(default=0)
+
     # Characteristics
+
+    # Health
     hp = models.IntegerField(default=100)
     max_hp = models.IntegerField(default=100)
-    base_attack = models.IntegerField(default=10)
-    armor = models.IntegerField(default=5)
+
+    # Weapon
+    weapon = models.ForeignKey("items.Weapon", on_delete=models.SET_NULL, null=True, blank=True)
+
+    # Armor
+    helmet = models.ForeignKey("items.Armor", null=True, blank=True, on_delete=models.SET_NULL, related_name="worn_helmet")
+    chestplate = models.ForeignKey("items.Armor", null=True, blank=True, on_delete=models.SET_NULL, related_name="worn_chest")
+    gloves = models.ForeignKey("items.Armor", null=True, blank=True, on_delete=models.SET_NULL, related_name="worn_gloves")
+    boots = models.ForeignKey("items.Armor", null=True, blank=True, on_delete=models.SET_NULL, related_name="worn_boots")
+
     # Room
     count_room = models.IntegerField(default=1)
 
@@ -46,3 +59,8 @@ class Character(models.Model):
 
     def required_experience(self):
         return 100 + (self.level - 1) * 50
+
+    def current_attack_range(self):
+        if self.weapon:
+            return self.weapon.min_damage, self.weapon.max_damage
+        return 1, 3

@@ -15,11 +15,15 @@ class AttackEnemyAPIView(APIView):
 
         if room.event_type != "Battle" or not room.enemy:
             return Response({"detail": "Сейчас не время для битвы."}, status=status.HTTP_400_BAD_REQUEST)
-
+        if room.is_cleared:
+            return Response({
+                "is_cleared": room.is_cleared,
+            })
         # === Атака игрока ===
         # is_crit = random.random() < (character.crit_chance / 100)
         is_crit = random.random() < (100 / 100)
         player_damage = max(character.base_attack - room.enemy_defense, 1)
+
         if is_crit:
             player_damage *= 2
         room.enemy_hp = max(0, room.enemy_hp - player_damage)
@@ -45,14 +49,11 @@ class AttackEnemyAPIView(APIView):
                 "is_cleared": True,
                 "exp_earned": room.enemy_exp,
             })
-        print()
-        print()
-        print(random.random())
-        print()
-        print(random.random() < (room.enemy_crit_chance / 100))
+
         # === Ответный удар врага ===
         is_crit_enemy = random.random() < (room.enemy_crit_chance / 100)
         enemy_damage = max(room.enemy_attack - character.armor, 1)
+
         if is_crit_enemy:
             enemy_damage *= 2
 

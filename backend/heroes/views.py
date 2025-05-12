@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from heroes.utils.create_basic_heroes import assign_default_equipment
 from heroes.models import Character
 from users.models import User
 from dungeon.models import DungeonDifficulty
@@ -33,12 +34,8 @@ class CreateCharacterView(APIView):
             user=user,
             name=character_name,
             difficulty=difficulty,
-            max_hp=100,
-            hp=100,
-            base_attack=10,
-            armor=5,
         )
-
+        assign_default_equipment(character)
         serialized_character = CharacterSerializer(character)
 
         return Response({

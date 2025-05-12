@@ -17,7 +17,10 @@ class CharacterSerializer(serializers.ModelSerializer):
             "difficulty",
             "max_hp",
             "hp",
-            "base_attack",
-            "armor",
+            "weapon",
+            "helmet",
+            "chestplate",
+            "gloves",
+            "boots",
             "is_alive",
         ]
