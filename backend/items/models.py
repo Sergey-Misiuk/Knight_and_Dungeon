@@ -59,3 +59,18 @@ class Armor(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.get_slot_display()} T{self.tier}) {self.min_defense}-{self.max_defense} DEF"
+
+
+class InventoryItem(models.Model):
+    character = models.ForeignKey("heroes.Character", on_delete=models.CASCADE, related_name="inventory")
+    item_type = models.CharField(max_length=10, choices=[("weapon", "Оружие"), ("armor", "Броня")])
+    weapon = models.ForeignKey("items.Weapon", null=True, blank=True, on_delete=models.SET_NULL)
+    armor = models.ForeignKey("items.Armor", null=True, blank=True, on_delete=models.SET_NULL)
+    is_equipped = models.BooleanField(default=False)
+    
+    def __str__(self):
+        if self.item_type == "weapon":
+            return f"{self.weapon}"
+        elif self.item_type == "armor":
+            return f"{self.armor}"
+        return "Unknown Item"

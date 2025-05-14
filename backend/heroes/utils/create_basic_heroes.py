@@ -1,4 +1,4 @@
-from items.models import Weapon, Armor
+from items.models import InventoryItem, Weapon, Armor
 
 
 def assign_default_equipment(character):
@@ -36,3 +36,9 @@ def assign_default_equipment(character):
     character.gloves = basic_gloves
     character.boots = basic_boots
     character.save()
+    
+    for item in [basic_weapon, basic_helmet, basic_chestplate, basic_gloves, basic_boots]:
+        if isinstance(item, Weapon):
+            InventoryItem.objects.create(character=character, item_type="weapon", weapon= item, is_equipped=True)
+        else:
+            InventoryItem.objects.create(character=character, item_type="armor", armor=item, is_equipped=True)
